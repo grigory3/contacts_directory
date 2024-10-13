@@ -2,19 +2,19 @@ package com.example.contacts_directory.models;
 
 import jakarta.persistence.*;
 
+@Entity
+@Table(name = "contacts")
 public class Contact {
-
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
-
     @Enumerated(EnumType.STRING)
+    @Column(name = "type")
     private ContactType type;
 
+    @Column(name = "value")
     private String value;
 
     public Contact() {
@@ -26,14 +26,6 @@ public class Contact {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 
     public ContactType getType() {
